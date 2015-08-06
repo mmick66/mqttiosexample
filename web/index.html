@@ -9,23 +9,33 @@
 
 		<p>My first paragraph.</p>
 
-		<script src="http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.javascript.git/plain/src/mqttws31.js"></script>
+		<script type="text/javascript" src="mqttws31.js"></script>
 		<script type="text/javascript">
 
-			var client = new Messaging.Client(hostname, port, clientid);
- 
-			var options = {
-     			timeout: 3,
-     			onSuccess: function () {
-         			alert("Connected");
-     			},
-     			onFailure: function (message) {
-         			alert("Connection failed: " + message.errorMessage);
-     			}
-     		};
- 
-			client.connect(options);
-			client.subscribe("d101/status", {qos: 0});
+			client = new Paho.MQTT.Client("127.0.0.1", 1883, "W101");
+			client.onConnectionLost = onConnectionLost;
+			client.onMessageArrived = onMessageArrived;
+
+			client.connect({onSuccess:onConnect});
+
+			function onConnect() {
+  
+  				console.log("onConnect");
+  				client.subscribe("/World");
+  				message = new Paho.MQTT.Message("Hello");
+  				message.destinationName = "/World";
+  				client.send(message); 
+			}
+
+			function onConnectionLost(responseObject) {
+  				if (responseObject.errorCode !== 0) {
+    				console.log("onConnectionLost:"+responseObject.errorMessage);
+  				}
+			}
+
+			function onMessageArrived(message) {
+  				console.log("onMessageArrived:"+message.payloadString);
+			}
 
 		</script>
 	</body>
