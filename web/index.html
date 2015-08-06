@@ -12,7 +12,9 @@
 		<script type="text/javascript" src="mqttws31.js"></script>
 		<script type="text/javascript">
 
-			client = new Paho.MQTT.Client("127.0.0.1", 1883, "W101");
+			console.log("Starting");
+
+			client = new Paho.MQTT.Client("127.0.0.1", 3000, "W101");
 			client.onConnectionLost = onConnectionLost;
 			client.onMessageArrived = onMessageArrived;
 
