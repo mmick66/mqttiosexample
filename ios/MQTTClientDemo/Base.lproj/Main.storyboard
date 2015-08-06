@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MQTT Client" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeS-EO-hHQ">
+                                <rect key="frame" x="16" y="28" width="343" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="mu8-nb-jY9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="29"/>
+                                <color key="textColor" red="0.33861142113095233" green="0.33861142113095233" blue="0.33861142113095233" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1YJ-fv-Tk5">
+                                <rect key="frame" x="16" y="131" width="343" height="42"/>
+                                <color key="backgroundColor" red="0.25056876853863636" green="0.26833073286061643" blue="0.64970321229050287" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="DZU-b0-j9w"/>
+                                    <constraint firstAttribute="height" constant="42" id="ybb-su-jYx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="18"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b5J-Yk-GNV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9T-rc-MeP">
+                                <rect key="frame" x="16" y="181" width="158" height="46"/>
+                                <color key="backgroundColor" red="0.6019079196688788" green="0.6496000744" blue="0.01919915362185682" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="RXY-wf-bE3"/>
+                                    <constraint firstAttribute="width" constant="158" id="Sdx-Fd-bcK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
+                                <state key="normal" title="Send Status">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="pzV-QC-l6l"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;message&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-uN-YKo">
+                                <rect key="frame" x="16" y="488" width="343" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="2yU-4J-rhF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.14779135338345864" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Output:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3h7-6E-Wkj">
+                                <rect key="frame" x="16" y="442" width="343" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="gof-UN-BsL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.26885573308270677" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="nUR-VP-e4i">
+                                <rect key="frame" x="182" y="190" width="177" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="lze-2x-hoX"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Online"/>
+                                    <segment title="Offline"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Client ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2c-1P-vev">
+                                <rect key="frame" x="16" y="248" width="70" height="21"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFV-aa-6OV">
+                                <rect key="frame" x="16" y="355" width="343" height="49"/>
+                                <color key="backgroundColor" red="0.64960007440476186" green="0.1526797755193017" blue="0.18500372240405924" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="S4p-XY-NcU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="17"/>
+                                <state key="normal" title="Disconnect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="disconnectButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RuV-Fh-aj8"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzQ-KF-eak">
+                                <rect key="frame" x="94" y="244" width="80" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-100" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="A1O-yC-TD5">
+                                <rect key="frame" x="182" y="244" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="SzV-ur-rl6"/>
+                                </connections>
+                            </stepper>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="UeS-EO-hHQ" secondAttribute="trailing" constant="16" id="3Y7-qe-6jK"/>
+                            <constraint firstItem="UeS-EO-hHQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="4vy-A1-eyR"/>
+                            <constraint firstAttribute="centerX" secondItem="1YJ-fv-Tk5" secondAttribute="centerX" id="6xj-3y-jca"/>
+                            <constraint firstItem="3h7-6E-Wkj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="8F7-Lr-cNc"/>
+                            <constraint firstItem="3h7-6E-Wkj" firstAttribute="top" secondItem="yFV-aa-6OV" secondAttribute="bottom" constant="38" id="A8A-cE-tA0"/>
+                            <constraint firstAttribute="trailing" secondItem="tyi-uN-YKo" secondAttribute="trailing" constant="16" id="Das-ZJ-6t3"/>
+                            <constraint firstItem="tyi-uN-YKo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="F34-SN-xwO"/>
+                            <constraint firstItem="v9T-rc-MeP" firstAttribute="top" secondItem="1YJ-fv-Tk5" secondAttribute="bottom" constant="8" id="Fkp-DB-Y2d"/>
+                            <constraint firstAttribute="trailing" secondItem="yFV-aa-6OV" secondAttribute="trailing" constant="16" id="LWi-7J-W4H"/>
+                            <constraint firstItem="v9T-rc-MeP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="MLc-v1-eSa"/>
+                            <constraint firstItem="1YJ-fv-Tk5" firstAttribute="top" secondItem="UeS-EO-hHQ" secondAttribute="bottom" constant="74" id="NGq-Xc-jLO"/>
+                            <constraint firstAttribute="trailing" secondItem="3h7-6E-Wkj" secondAttribute="trailing" constant="16" id="QTF-9d-3Av"/>
+                            <constraint firstItem="UeS-EO-hHQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="V5C-Im-2c7"/>
+                            <constraint firstItem="yFV-aa-6OV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="WnE-fD-hdr"/>
+                            <constraint firstAttribute="trailing" secondItem="nUR-VP-e4i" secondAttribute="trailing" constant="16" id="cZa-ng-lD0"/>
+                            <constraint firstItem="yFV-aa-6OV" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="355" id="hHP-hD-QxY"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tyi-uN-YKo" secondAttribute="bottom" constant="151" id="kJY-Mx-EQS"/>
+                            <constraint firstItem="nUR-VP-e4i" firstAttribute="leading" secondItem="v9T-rc-MeP" secondAttribute="trailing" constant="8" id="mtU-rt-EGj"/>
+                            <constraint firstItem="nUR-VP-e4i" firstAttribute="top" secondItem="1YJ-fv-Tk5" secondAttribute="bottom" constant="17" id="wJh-z6-fbj"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="clientIDTextField" destination="bzQ-KF-eak" id="6za-P9-Txb"/>
+                        <outlet property="connectButton" destination="kh9-bI-dsS" id="F0k-Qr-2AE"/>
+                        <outlet property="disconnectButton" destination="yFV-aa-6OV" id="znz-rc-RzJ"/>
+                        <outlet property="messageLabel" destination="tyi-uN-YKo" id="uLP-jp-ALy"/>
+                        <outlet property="sendButton" destination="v9T-rc-MeP" id="p2k-NC-s65"/>
+                        <outlet property="statusControl" destination="nUR-VP-e4i" id="kFJ-Lv-ZdL"/>
+                        <outlet property="stepper" destination="A1O-yC-TD5" id="8vg-JD-bOn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="434.5" y="268.5"/>
+        </scene>
+    </scenes>
+</document>

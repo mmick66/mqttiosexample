@@ -1,0 +1,494 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BD90A65DEE1F1F7FCDE23279 /* libPods-MQTTClientDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20238FBD2BACB5E1FC299C0A /* libPods-MQTTClientDemo.a */; };
+		BEA1F7521B6FC9A20001987E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA1F7511B6FC9A20001987E /* main.m */; };
+		BEA1F7551B6FC9A20001987E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA1F7541B6FC9A20001987E /* AppDelegate.m */; };
+		BEA1F7581B6FC9A20001987E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA1F7571B6FC9A20001987E /* ViewController.m */; };
+		BEA1F75B1B6FC9A20001987E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA1F7591B6FC9A20001987E /* Main.storyboard */; };
+		BEA1F75D1B6FC9A20001987E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA1F75C1B6FC9A20001987E /* Images.xcassets */; };
+		BEA1F7601B6FC9A20001987E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA1F75E1B6FC9A20001987E /* LaunchScreen.xib */; };
+		BEA1F76C1B6FC9A20001987E /* MQTTClientDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA1F76B1B6FC9A20001987E /* MQTTClientDemoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BEA1F7661B6FC9A20001987E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEA1F7441B6FC9A20001987E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEA1F74B1B6FC9A20001987E;
+			remoteInfo = MQTTClientDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20238FBD2BACB5E1FC299C0A /* libPods-MQTTClientDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MQTTClientDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F843EEE38C1FB09BA2DF65F /* Pods-MQTTClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTClientDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTClientDemo/Pods-MQTTClientDemo.release.xcconfig"; sourceTree = "<group>"; };
+		BEA1F74C1B6FC9A20001987E /* MQTTClientDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MQTTClientDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA1F7501B6FC9A20001987E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEA1F7511B6FC9A20001987E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BEA1F7531B6FC9A20001987E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BEA1F7541B6FC9A20001987E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BEA1F7561B6FC9A20001987E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BEA1F7571B6FC9A20001987E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BEA1F75A1B6FC9A20001987E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEA1F75C1B6FC9A20001987E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BEA1F75F1B6FC9A20001987E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BEA1F7651B6FC9A20001987E /* MQTTClientDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MQTTClientDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA1F76A1B6FC9A20001987E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEA1F76B1B6FC9A20001987E /* MQTTClientDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTClientDemoTests.m; sourceTree = "<group>"; };
+		FDE021158EA1539AB32DC5F4 /* Pods-MQTTClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTClientDemo/Pods-MQTTClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEA1F7491B6FC9A20001987E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD90A65DEE1F1F7FCDE23279 /* libPods-MQTTClientDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEA1F7621B6FC9A20001987E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0CABB940C2D9726C1D28D401 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDE021158EA1539AB32DC5F4 /* Pods-MQTTClientDemo.debug.xcconfig */,
+				6F843EEE38C1FB09BA2DF65F /* Pods-MQTTClientDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9AF1CCD4353229CBB53695FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20238FBD2BACB5E1FC299C0A /* libPods-MQTTClientDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEA1F7431B6FC9A20001987E = {
+			isa = PBXGroup;
+			children = (
+				BEA1F74E1B6FC9A20001987E /* MQTTClientDemo */,
+				BEA1F7681B6FC9A20001987E /* MQTTClientDemoTests */,
+				BEA1F74D1B6FC9A20001987E /* Products */,
+				0CABB940C2D9726C1D28D401 /* Pods */,
+				9AF1CCD4353229CBB53695FA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BEA1F74D1B6FC9A20001987E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1F74C1B6FC9A20001987E /* MQTTClientDemo.app */,
+				BEA1F7651B6FC9A20001987E /* MQTTClientDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEA1F74E1B6FC9A20001987E /* MQTTClientDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1F7531B6FC9A20001987E /* AppDelegate.h */,
+				BEA1F7541B6FC9A20001987E /* AppDelegate.m */,
+				BEA1F7561B6FC9A20001987E /* ViewController.h */,
+				BEA1F7571B6FC9A20001987E /* ViewController.m */,
+				BEA1F7591B6FC9A20001987E /* Main.storyboard */,
+				BEA1F75C1B6FC9A20001987E /* Images.xcassets */,
+				BEA1F75E1B6FC9A20001987E /* LaunchScreen.xib */,
+				BEA1F74F1B6FC9A20001987E /* Supporting Files */,
+			);
+			path = MQTTClientDemo;
+			sourceTree = "<group>";
+		};
+		BEA1F74F1B6FC9A20001987E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1F7501B6FC9A20001987E /* Info.plist */,
+				BEA1F7511B6FC9A20001987E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEA1F7681B6FC9A20001987E /* MQTTClientDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1F76B1B6FC9A20001987E /* MQTTClientDemoTests.m */,
+				BEA1F7691B6FC9A20001987E /* Supporting Files */,
+			);
+			path = MQTTClientDemoTests;
+			sourceTree = "<group>";
+		};
+		BEA1F7691B6FC9A20001987E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1F76A1B6FC9A20001987E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BEA1F74B1B6FC9A20001987E /* MQTTClientDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEA1F76F1B6FC9A20001987E /* Build configuration list for PBXNativeTarget "MQTTClientDemo" */;
+			buildPhases = (
+				56EE6791F98504D69FA05EAD /* Check Pods Manifest.lock */,
+				BEA1F7481B6FC9A20001987E /* Sources */,
+				BEA1F7491B6FC9A20001987E /* Frameworks */,
+				BEA1F74A1B6FC9A20001987E /* Resources */,
+				E7C163B6C0EDBF380A96DB44 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MQTTClientDemo;
+			productName = MQTTClientDemo;
+			productReference = BEA1F74C1B6FC9A20001987E /* MQTTClientDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BEA1F7641B6FC9A20001987E /* MQTTClientDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEA1F7721B6FC9A20001987E /* Build configuration list for PBXNativeTarget "MQTTClientDemoTests" */;
+			buildPhases = (
+				BEA1F7611B6FC9A20001987E /* Sources */,
+				BEA1F7621B6FC9A20001987E /* Frameworks */,
+				BEA1F7631B6FC9A20001987E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEA1F7671B6FC9A20001987E /* PBXTargetDependency */,
+			);
+			name = MQTTClientDemoTests;
+			productName = MQTTClientDemoTests;
+			productReference = BEA1F7651B6FC9A20001987E /* MQTTClientDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEA1F7441B6FC9A20001987E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = karmadust;
+				TargetAttributes = {
+					BEA1F74B1B6FC9A20001987E = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					BEA1F7641B6FC9A20001987E = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = BEA1F74B1B6FC9A20001987E;
+					};
+				};
+			};
+			buildConfigurationList = BEA1F7471B6FC9A20001987E /* Build configuration list for PBXProject "MQTTClientDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BEA1F7431B6FC9A20001987E;
+			productRefGroup = BEA1F74D1B6FC9A20001987E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEA1F74B1B6FC9A20001987E /* MQTTClientDemo */,
+				BEA1F7641B6FC9A20001987E /* MQTTClientDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEA1F74A1B6FC9A20001987E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEA1F75B1B6FC9A20001987E /* Main.storyboard in Resources */,
+				BEA1F7601B6FC9A20001987E /* LaunchScreen.xib in Resources */,
+				BEA1F75D1B6FC9A20001987E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEA1F7631B6FC9A20001987E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56EE6791F98504D69FA05EAD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7C163B6C0EDBF380A96DB44 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MQTTClientDemo/Pods-MQTTClientDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEA1F7481B6FC9A20001987E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEA1F7581B6FC9A20001987E /* ViewController.m in Sources */,
+				BEA1F7551B6FC9A20001987E /* AppDelegate.m in Sources */,
+				BEA1F7521B6FC9A20001987E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEA1F7611B6FC9A20001987E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEA1F76C1B6FC9A20001987E /* MQTTClientDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BEA1F7671B6FC9A20001987E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEA1F74B1B6FC9A20001987E /* MQTTClientDemo */;
+			targetProxy = BEA1F7661B6FC9A20001987E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BEA1F7591B6FC9A20001987E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEA1F75A1B6FC9A20001987E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BEA1F75E1B6FC9A20001987E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEA1F75F1B6FC9A20001987E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BEA1F76D1B6FC9A20001987E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BEA1F76E1B6FC9A20001987E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BEA1F7701B6FC9A20001987E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE021158EA1539AB32DC5F4 /* Pods-MQTTClientDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MQTTClientDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BEA1F7711B6FC9A20001987E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F843EEE38C1FB09BA2DF65F /* Pods-MQTTClientDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MQTTClientDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BEA1F7731B6FC9A20001987E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MQTTClientDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MQTTClientDemo.app/MQTTClientDemo";
+			};
+			name = Debug;
+		};
+		BEA1F7741B6FC9A20001987E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MQTTClientDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MQTTClientDemo.app/MQTTClientDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEA1F7471B6FC9A20001987E /* Build configuration list for PBXProject "MQTTClientDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEA1F76D1B6FC9A20001987E /* Debug */,
+				BEA1F76E1B6FC9A20001987E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEA1F76F1B6FC9A20001987E /* Build configuration list for PBXNativeTarget "MQTTClientDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEA1F7701B6FC9A20001987E /* Debug */,
+				BEA1F7711B6FC9A20001987E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEA1F7721B6FC9A20001987E /* Build configuration list for PBXNativeTarget "MQTTClientDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEA1F7731B6FC9A20001987E /* Debug */,
+				BEA1F7741B6FC9A20001987E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BEA1F7441B6FC9A20001987E /* Project object */;
+}
