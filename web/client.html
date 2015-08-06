@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	</head>
+	<body>
+
+		<h1>MQTT Client</h1>
+
+		<p>My first paragraph.</p>
+
+		<script src="http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.javascript.git/plain/src/mqttws31.js"></script>
+		<script type="text/javascript">
+
+			var client = new Messaging.Client("127.0.0.1", 1883, "W101");
+ 
+			var options = {
+     			timeout: 3,
+     			onSuccess: function () {
+         			alert("Connected");
+     			},
+     			onFailure: function (message) {
+         			alert("Connection failed: " + message.errorMessage);
+     			}
+     		};
+ 
+			client.connect(options);
+			client.subscribe("d101/status", {qos: 0});
+
+		</script>
+	</body>
+</html>
