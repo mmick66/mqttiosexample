@@ -16,6 +16,7 @@
 		BEA1F7601B6FC9A20001987E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA1F75E1B6FC9A20001987E /* LaunchScreen.xib */; };
 		BEA1F76C1B6FC9A20001987E /* MQTTClientDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA1F76B1B6FC9A20001987E /* MQTTClientDemoTests.m */; };
 		BEA1F7761B7207B50001987E /* bg-gradient.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEA1F7751B7207B50001987E /* bg-gradient.jpg */; };
+		BEA1F7781B750F580001987E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA1F7771B750F580001987E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		BEA1F76A1B6FC9A20001987E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEA1F76B1B6FC9A20001987E /* MQTTClientDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTClientDemoTests.m; sourceTree = "<group>"; };
 		BEA1F7751B7207B50001987E /* bg-gradient.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-gradient.jpg"; sourceTree = "<group>"; };
+		BEA1F7771B750F580001987E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FDE021158EA1539AB32DC5F4 /* Pods-MQTTClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MQTTClientDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MQTTClientDemo/Pods-MQTTClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA1F7781B750F580001987E /* CoreLocation.framework in Frameworks */,
 				BD90A65DEE1F1F7FCDE23279 /* libPods-MQTTClientDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +82,7 @@
 		9AF1CCD4353229CBB53695FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEA1F7771B750F580001987E /* CoreLocation.framework */,
 				20238FBD2BACB5E1FC299C0A /* libPods-MQTTClientDemo.a */,
 			);
 			name = Frameworks;
