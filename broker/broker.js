@@ -1,4 +1,6 @@
+var http  = require('http');
 var mosca = require('mosca');
+
 
 var ascoltatore = {
   //using ascoltatore
@@ -13,18 +15,24 @@ var settings = {
   backend: ascoltatore
 };
 
-var server = new mosca.Server(settings);
+// Create the Servers
+var wsServer = http.createServer();
+var mqttServer = new mosca.Server(settings);
 
-server.on('clientConnected', function(client) {
+// Make them listen
+mqttServer.attachHttpServer(wsServer);
+wsServer.listen(3000);
+
+mqttServer.on('clientConnected', function(client) {
     console.log('client connected', client.id);
 });
 
 // fired when a message is received
-server.on('published', function(packet, client) {
+mqttServer.on('published', function(packet, client) {
   console.log('>> Published', packet.payload);
 });
 
-server.on('ready', function() {
+mqttServer.on('ready', function() {
 	console.log('Mosca server is up and running');
 });
 
