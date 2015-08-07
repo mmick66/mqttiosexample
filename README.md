@@ -40,6 +40,13 @@ pod install
 cd ../
 ```
 
+If pod seems to run forever you can try the following
+```
+pod repo remove master
+pod setup
+pod install
+```
+
 ### Running the system ###
 
 1. Start the broker
