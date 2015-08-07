@@ -2,7 +2,7 @@
 
 This is a companion to http://karmadust.com/internet-of-things-with-ios-node-js-and-mqtt/
 
-### Prerequisites ###
+## Prerequisites
 
 I use PM2 to run Node.js applications as I feel that it offers better control and logs that forever.
 
@@ -16,7 +16,7 @@ Install http-server to serve the index.html page that contains the Paho.js clien
 npm install http-server -g
 ```
 
-### Installation ###
+## Installation of Dependencies
 
 Clone the repo
 
@@ -24,23 +24,31 @@ Clone the repo
 git clone git@bitbucket.org:mmick66/mqttiosexample.git
 ```
 
-Update the Node.js dependencies
+### Update the Node.js dependencies
+
+Go into the broker folder and run:
 
 ```
-cd mqttiosexample/broker
 npm install # installs Mosca
-cd ../
 ```
 
-Update the iOS Pod dependencies
+### Update the iOS Pod dependencies
+
+Go into the ios folder and run:
 
 ```
-cd mqttiosexample/ios
 pod install
-cd ../
 ```
 
-### Running the system ###
+If pod seems to run forever you can try the following:
+
+```
+pod repo remove master
+pod setup
+pod install
+```
+
+## Running the system
 
 1. Start the broker
 ```
