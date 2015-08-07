@@ -7,12 +7,10 @@
 
 		<h1>MQTT Client</h1>
 
-		<p>My first paragraph.</p>
+		<p id="main_text">Connecting to MQTT Broker</p>
 
 		<script type="text/javascript" src="mqttws31.js"></script>
 		<script type="text/javascript">
-
-			console.log("Starting");
 
 			client = new Paho.MQTT.Client("127.0.0.1", 3000, "W101");
 			client.onConnectionLost = onConnectionLost;
@@ -21,22 +19,19 @@
 			client.connect({onSuccess:onConnect});
 
 			function onConnect() {
-  
-  				console.log("onConnect");
-  				client.subscribe("/World");
-  				message = new Paho.MQTT.Message("Hello");
-  				message.destinationName = "/World";
-  				client.send(message); 
+  				write("Connected to 127.0.0.1:3000!");
+  				client.subscribe("D101/status");
 			}
-
 			function onConnectionLost(responseObject) {
   				if (responseObject.errorCode !== 0) {
-    				console.log("onConnectionLost:"+responseObject.errorMessage);
+  					write("Connection Lost " + responseObject.errorMessage);
   				}
 			}
-
 			function onMessageArrived(message) {
-  				console.log("onMessageArrived:"+message.payloadString);
+				write("Message Arrived: '" + message.payloadString + "'");
+			}
+			function write(text) {
+				document.getElementById("main_text").innerHTML = text; 
 			}
 
 		</script>

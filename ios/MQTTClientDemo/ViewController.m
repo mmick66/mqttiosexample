@@ -9,7 +9,8 @@
 #import "ViewController.h"
 #import <MQTTKit.h>
 
-#define STD_CLIENT_ID @"D1102"
+#define STD_CLIENT_ID @"D101"
+#define STD_MQTT_SERVER_URI @"127.0.0.1"
 
 @interface ViewController ()
 {
@@ -23,6 +24,9 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *statusControl;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
 @property (strong, nonatomic) IBOutlet UITextField *clientIDTextField;
+
+@property (nonatomic) BOOL isConnected;
+
 @end
 
 @implementation ViewController
@@ -34,6 +38,8 @@
     
     self.messageLabel.text = @"";
     self.clientIDTextField.text = STD_CLIENT_ID;
+    
+    self.isConnected = NO;
 }
 
 
@@ -51,42 +57,30 @@
         
     }
     
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    
-    client = [[MQTTClient alloc] initWithClientId:self.clientIDTextField.text];
-    
-    
 }
 
 
 - (IBAction)connectButtonPressed:(UIButton*)sender {
     
-    // 46.101.21.238 - haproxy
-    // iot.eclipse.org
-    // 46.101.22.78 - mosca
+    client = [[MQTTClient alloc] initWithClientId:self.clientIDTextField.text];
     
-    self.messageLabel.text = @"Connecting";
+    self.messageLabel.text = [NSString stringWithFormat:@"Connecting... to %@", STD_MQTT_SERVER_URI];
     
-    [client connectToHost:@"46.101.21.238"
+    [client connectToHost:STD_MQTT_SERVER_URI
         completionHandler:^(NSUInteger code) {
-            
             
             if (code == ConnectionAccepted) {
                 
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    
-                    self.messageLabel.text = @"Connection Accepted";
-                    
-                    
+                    self.messageLabel.text = @"Connection Accepted!";
+                    self.isConnected = YES;
                     
                 });
                 
@@ -97,6 +91,9 @@
 }
 
 - (IBAction)sendButtonPressed:(UIButton *)sender {
+    
+    if(!client)
+        return;
     
     NSString* topic = [NSString stringWithFormat:@"%@/status", client.clientID];
     
@@ -121,11 +118,15 @@
 
 - (IBAction)disconnectButtonPressed:(id)sender {
     
+    if(!client)
+        return;
+    
     [client disconnectWithCompletionHandler:^(NSUInteger code) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             self.messageLabel.text = @"Client Disconnected";
+            self.isConnected = NO;
             
         });
         
@@ -133,7 +134,24 @@
     
 }
 
+#pragma mark - Setters/Getters
 
+-(void)setIsConnected:(BOOL)isConnected
+{
+    _isConnected = isConnected;
+    
+    self.stepper.enabled = !_isConnected;
+    self.clientIDTextField.enabled = !_isConnected;
+    
+    
+    self.connectButton.enabled = !_isConnected;
+    self.disconnectButton.enabled = _isConnected;
+    self.sendButton.enabled = _isConnected;
+    
+    for(UIControl* control in @[self.clientIDTextField, self.stepper, self.connectButton, self.disconnectButton, self.sendButton])
+        control.alpha = control.enabled ? 1.0 : 0.5;
+    
+}
 
 
 
