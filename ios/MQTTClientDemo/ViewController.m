@@ -134,11 +134,11 @@
     
     if (currentLocation != nil) {
         
-        NSString* latString = [NSString stringWithFormat:@"Lat: %.8f", currentLocation.coordinate.longitude];
-        NSString* longString = [NSString stringWithFormat:@"Long: %.8f", currentLocation.coordinate.latitude];
+        NSString* latString = [NSString stringWithFormat:@"lat: %.8f", currentLocation.coordinate.latitude];
+        NSString* longString = [NSString stringWithFormat:@"lng: %.8f", currentLocation.coordinate.longitude];
         
-        self.longitudeLabel.text = latString;
-        self.latitudeLabel.text = longString;
+        self.latitudeLabel.text = latString;
+        self.longitudeLabel.text = longString;
         
         NSString* message = [NSString stringWithFormat:@"{%@, %@}", latString, longString];
         [self publishMessage:message toTopic:[NSString stringWithFormat:@"%@/location", mqttClient.clientID]];

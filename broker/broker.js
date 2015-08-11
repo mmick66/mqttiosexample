@@ -15,20 +15,24 @@ var settings = {
   backend: ascoltatore
 };
 
+var http_port = 3000
+
 // Create the Servers
 var wsServer = http.createServer();
 var mqttServer = new mosca.Server(settings);
 
 // Make them listen
 mqttServer.attachHttpServer(wsServer);
-wsServer.listen(3000);
+wsServer.listen(http_port);
 
 mqttServer.on('clientConnected', function(client) {
-    console.log('client connected', client.id);
+    console.log('=> Client connected with id:"' + client.id + '"');
 });
 
 mqttServer.on('ready', function() {
-  console.log('Mosca server is up and running');
+  console.log('== Mosca Server is Up and Running ==');
+  console.log('   MQTT Port: ' + settings.port);
+  console.log('   HTTP Port: ' + http_port);
 });
 
 
@@ -36,6 +40,9 @@ mqttServer.on('published', function(packet, client) {
   console.log('>> Published', packet.payload);
 });
 
+mqttServer.on("subscribed", function(topic, client) {
+  console.log('<< Subscribed to "' + topic + '"');
+});
 
 mqttServer.on('clientDisconnected', function(client) {
   

@@ -2,19 +2,51 @@
 <html>
 	<head>
 
+		<style>
+
+     	 #map-canvas {
+        	width: 400px;
+        	height: 300px;
+        	background-color: #CCC;
+      	}
+
+    	</style>
+
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+
 	</head>
 	<body>
 
 		<h1>MQTT Client</h1>
 
 		<button onclick="connect()">Connect to Broker</button><br />
-		<button onclick>Subscribe to client:</button><input type="number" style="width:50px" value="101" onchange="updateClientId(this.value)">
+		<button onclick="subscribe()">Subscribe to client:</button><input type="number" style="width:50px" value="101" onchange="updateClientId(this.value)">
 
 		<p id="main_text">Connecting to MQTT Broker</p>
+
+		<div id="map-canvas"><div>
 
 		<script type="text/javascript" src="mqttws31.js"></script>
 		<script type="text/javascript">
 
+
+			// Initialize Map
+			
+			var map = undefined;
+			
+      		function initialize() {
+        		var mapOptions = {
+          			center: { lat: -34.397, lng: 150.644},
+          			zoom: 8
+        		};
+        		var mapCanvas = document.getElementById('map-canvas');
+        		map = new google.maps.Map(mapCanvas, mapOptions);
+      		}
+      		google.maps.event.addDomListener(window, 'load', initialize);
+
+      		// Initialize Communication with Mosca
 			var did = 'D101';
 
 			function updateClientId(value) {
@@ -41,11 +73,32 @@
 			}
 			function onConnectionLost(responseObject) {
   				if (responseObject.errorCode !== 0) {
-  					write("Connection Lost " + responseObject.errorMessage);
+  					write('Connection Lost ' + responseObject.errorMessage);
   				}
 			}
 			function onMessageArrived(message) {
-				write("Message Arrived: '" + message.payloadString + "'");
+
+				var dname = message.destinationName;
+
+				write('Message Arrived for topic: "' + dname + '" and payload: "' + message.payloadString + '"');
+
+				if(dname == did+'/status') {
+
+				} else if(dname == did+'/location') {
+
+					var locationObject = eval("(" + message.payloadString + ')');
+
+					if(locationObject && map != undefined) {
+						var center = new google.maps.LatLng(locationObject.lat, locationObject.lng);
+    					map.setCenter(center, 8);
+    					var marker = new google.maps.Marker({
+  							position: center,
+  							map: map
+						});
+					}
+
+				}
+
 
 			}
 			function write(text) {
@@ -53,5 +106,6 @@
 			}
 
 		</script>
+
 	</body>
 </html>
