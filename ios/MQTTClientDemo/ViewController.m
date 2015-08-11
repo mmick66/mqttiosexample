@@ -67,7 +67,7 @@
         
     } else {
         
-        [self.locationManager stopUpdatingLocation];
+        [self stopLocationService];
     }
 }
 
@@ -100,6 +100,12 @@
     [self.locationManager startUpdatingLocation];
 }
 
+- (void) stopLocationService {
+    
+    [self.locationManager stopUpdatingLocation];
+    
+    self.locationManager = nil;
+}
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
@@ -110,6 +116,7 @@
                       cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     
     self.locationSwitch.on = NO;
+    self.locationManager = nil;
     
     
 }
@@ -123,14 +130,20 @@
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
-        self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        
+        NSString* latString = [NSString stringWithFormat:@"Lat: %.8f", currentLocation.coordinate.longitude];
+        NSString* longString = [NSString stringWithFormat:@"Long: %.8f", currentLocation.coordinate.latitude];
+        
+        self.longitudeLabel.text = latString;
+        self.latitudeLabel.text = longString;
+        
+        NSString* message = [NSString stringWithFormat:@"{%@, %@}", latString, longString];
+        [self publishMessage:message toTopic:[NSString stringWithFormat:@"%@/location", mqttClient.clientID]];
+        
     }
 }
 
-- (void)sendLocation {
-    [self publishMessage:@"" toTopic:[NSString stringWithFormat:@"%@/location", mqttClient.clientID]];
-}
+
 
 # pragma mark - Callbacks
 
@@ -163,11 +176,17 @@
 // append to the output
 - (void) wirteOutput:(NSString*)output {
     
-    if([self.outputTextView.text isEqualToString:@""]) {
+    NSString* currentText = self.outputTextView.text;
+    
+    if([currentText isEqualToString:@""]) {
         self.outputTextView.text = output;
         return;
     }
-    self.outputTextView.text = [NSString stringWithFormat:@"%@\n%@", self.outputTextView.text, output];
+    self.outputTextView.text = [NSString stringWithFormat:@"%@\n%@", currentText, output];
+    
+    // scroll to bottom
+    NSRange range = NSMakeRange(currentText.length - 1, 1);
+    [self.outputTextView scrollRangeToVisible:range];
     
 }
 

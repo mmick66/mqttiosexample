@@ -1,3 +1,4 @@
 ios/MQTTClientDemo.xcworkspace/
 ios/Podfile.lock
 ios/Pods/
+broker/node_modules/
