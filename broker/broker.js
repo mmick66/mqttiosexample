@@ -27,13 +27,31 @@ mqttServer.on('clientConnected', function(client) {
     console.log('client connected', client.id);
 });
 
-// fired when a message is received
+mqttServer.on('ready', function() {
+  console.log('Mosca server is up and running');
+});
+
+
 mqttServer.on('published', function(packet, client) {
   console.log('>> Published', packet.payload);
 });
 
-mqttServer.on('ready', function() {
-	console.log('Mosca server is up and running');
+
+server.on('clientDisconnected', function(client) {
+  
+  console.log('Client Disconnected:', client.id);
+
+  var message = {
+    topic: client.id+'/status',
+    payload: 'Offline', 
+    qos: 0, 
+    retain: true
+  };
+
+  server.publish(message, function() {
+    console.log('done!');
+  });
+
 });
 
 

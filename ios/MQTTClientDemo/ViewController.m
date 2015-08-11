@@ -16,12 +16,10 @@
 @interface ViewController () <CLLocationManagerDelegate>
 {
     MQTTClient *mqttClient;
-    
 }
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
-@property (strong, nonatomic) IBOutlet UIButton *sendButton;
 @property (strong, nonatomic) IBOutlet UIButton *disconnectButton;
 
 @property (strong, nonatomic) IBOutlet UITextView *outputTextView;
@@ -58,54 +56,7 @@
 
 # pragma mark - Location Service
 
-- (IBAction)switchValueChanged:(UISwitch *)sender {
-    
-    if(sender.on) {
-        
-        
-        [self startLocationService];
-        
-    } else {
-        
-        [self stopLocationService];
-    }
-}
 
--(void)startLocationService {
-    
-    self.locationManager = [[CLLocationManager alloc] init];
-    
-    self.locationManager.delegate = self;
-    
-    // iOS 8
-    if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        
-        NSUInteger code = [CLLocationManager authorizationStatus];
-        
-        if (code == kCLAuthorizationStatusNotDetermined) {
-            
-            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]) {
-                
-                [self.locationManager requestAlwaysAuthorization];
-                
-            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
-                
-                [self.locationManager  requestWhenInUseAuthorization];
-                
-            } else {
-                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
-            }
-        }
-    }
-    [self.locationManager startUpdatingLocation];
-}
-
-- (void) stopLocationService {
-    
-    [self.locationManager stopUpdatingLocation];
-    
-    self.locationManager = nil;
-}
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
@@ -167,7 +118,8 @@
                         [self publishStatusMessage:@"Online"];
                     
                     });
-                
+                } else {
+                    [self wirteOutput:@"Could not connect to host!"];
                 }
             
             }];
@@ -189,6 +141,9 @@
     [self.outputTextView scrollRangeToVisible:range];
     
 }
+
+
+     
 
 #pragma mark - API
 
