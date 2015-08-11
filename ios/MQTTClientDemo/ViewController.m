@@ -23,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
 @property (strong, nonatomic) IBOutlet UIButton *disconnectButton;
 
-@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+@property (strong, nonatomic) IBOutlet UITextView *outputTextView;
 @property (strong, nonatomic) IBOutlet UITextField *clientIDTextField;
 @property (strong, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *longitudeLabel;
@@ -40,7 +40,7 @@
     [super viewDidLoad];
     
     
-    self.messageLabel.text = @"";
+    self.outputTextView.text = @"";
     self.clientIDTextField.text = STD_CLIENT_ID;
     
     self.isConnected = NO;
@@ -79,7 +79,7 @@
     
     mqttClient = [[MQTTClient alloc] initWithClientId:self.clientIDTextField.text];
     
-    self.messageLabel.text = [NSString stringWithFormat:@"Connecting... to %@", STD_MQTT_SERVER_URI];
+    [self wirteOutput:[NSString stringWithFormat:@"Connecting to %@...", STD_MQTT_SERVER_URI]];
     
     [mqttClient connectToHost:STD_MQTT_SERVER_URI
             completionHandler:^(NSUInteger code) {
@@ -88,7 +88,7 @@
                 
                     dispatch_async(dispatch_get_main_queue(), ^{
                     
-                        self.messageLabel.text = @"Connection Accepted!";
+                        [self wirteOutput:@"Connection Accepted!"];
                         self.isConnected = YES;
                         
                         [self publishStatusMessage:@"Online"];
@@ -100,7 +100,16 @@
             }];
 }
 
-
+// append to the output
+- (void) wirteOutput:(NSString*)output {
+    
+    if([self.outputTextView.text isEqualToString:@""]) {
+        self.outputTextView.text = output;
+        return;
+    }
+    self.outputTextView.text = [NSString stringWithFormat:@"%@\n%@", self.outputTextView.text, output];
+    
+}
 
 #pragma mark - API
 
@@ -131,7 +140,8 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    self.messageLabel.text = [NSString stringWithFormat:@"message: \"%@\" has been published to topic: \"%@\"", message, topic];
+                    NSString* ackString = [NSString stringWithFormat:@"PUB >> \"%@\" to \"%@\"", message, topic];
+                    [self wirteOutput:ackString];
                     
                 });
                 
@@ -149,7 +159,7 @@
         
             dispatch_async(dispatch_get_main_queue(), ^{
             
-                self.messageLabel.text = @"Client Disconnected";
+                [self wirteOutput: @"Client Disconnected"];
                 self.isConnected = NO;
             
             });
@@ -181,6 +191,10 @@
     
 }
 
+- (IBAction)trashPressed:(id)sender {
+    
+    self.outputTextView.text = @"";
+}
 
 
 @end
