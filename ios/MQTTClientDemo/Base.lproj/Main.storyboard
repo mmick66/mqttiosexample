@@ -233,6 +233,7 @@
                         <outlet property="connectButton" destination="1YJ-fv-Tk5" id="YYi-sA-acn"/>
                         <outlet property="disconnectButton" destination="yFV-aa-6OV" id="znz-rc-RzJ"/>
                         <outlet property="latitudeLabel" destination="sZW-F7-ZjN" id="OxX-N3-pk0"/>
+                        <outlet property="locationSwitch" destination="HST-DB-tTy" id="5MC-2n-FTB"/>
                         <outlet property="longitudeLabel" destination="Tsd-17-HtC" id="N09-os-wb8"/>
                         <outlet property="outputTextView" destination="LZ4-Ai-Pq7" id="GNP-hJ-58O"/>
                     </connections>

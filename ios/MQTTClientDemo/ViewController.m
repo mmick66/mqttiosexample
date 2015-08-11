@@ -13,14 +13,13 @@
 #define STD_CLIENT_ID @"D101"
 #define STD_MQTT_SERVER_URI @"127.0.0.1"
 
-#define SYSTEM_IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] == NSOrderedDescending)
-
 @interface ViewController () <CLLocationManagerDelegate>
 {
     MQTTClient *mqttClient;
-    CLLocationManager *locationManager;
+    
 }
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
 @property (strong, nonatomic) IBOutlet UIButton *disconnectButton;
@@ -29,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *clientIDTextField;
 @property (strong, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *longitudeLabel;
+@property (strong, nonatomic) IBOutlet UISwitch *locationSwitch;
 
 
 @property (nonatomic) BOOL isConnected;
@@ -58,67 +58,60 @@
 
 # pragma mark - Location Service
 
-- (void) showLocationServiceUnavailableMessage {
-    
-    [[[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
-                                message:@"Please enable the location services to run this experiment. If on the simulator add GPX"
-                               delegate:nil
-                      cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    
-}
-
 - (IBAction)switchValueChanged:(UISwitch *)sender {
     
     if(sender.on) {
         
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        
-//        if(SYSTEM_IS_OS_8_OR_LATER) {
-//            
-//            [locationManager requestWhenInUseAuthorization];
-//            [locationManager requestAlwaysAuthorization];
-//            
-//        } else {
-//            
-//            [locationManager startUpdatingLocation];
-//        }
-        
-        
+        [self startLocationService];
         
     } else {
         
-        [locationManager stopUpdatingLocation];
+        [self.locationManager stopUpdatingLocation];
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    switch (status) {
+-(void)startLocationService {
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    
+    self.locationManager.delegate = self;
+    
+    // iOS 8
+    if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        
+        if (code == kCLAuthorizationStatusNotDetermined) {
             
-        case kCLAuthorizationStatusNotDetermined:
-        case kCLAuthorizationStatusRestricted:
-        case kCLAuthorizationStatusDenied:
-            [self showLocationServiceUnavailableMessage];
-            break;
-            
-        default:
-            NSLog(@"Switched Location on");
-            [locationManager startUpdatingLocation];
-            break;
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]) {
+                
+                [self.locationManager requestAlwaysAuthorization];
+                
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                
+                [self.locationManager  requestWhenInUseAuthorization];
+                
+            } else {
+                NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
+            }
+        }
     }
+    [self.locationManager startUpdatingLocation];
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError: %@", error);
-    [[[UIAlertView alloc] initWithTitle:@"Error"
-                                message:@"Failed to Get Your Location"
+    [[[UIAlertView alloc] initWithTitle:@"Failed to Get Your Location"
+                                message:@"If on a simulator make sure you do debug > simulate location and set it to something "
                                delegate:nil
                       cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    
+    self.locationSwitch.on = NO;
+    
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -246,10 +239,12 @@
     self.connectButton.enabled = !_isConnected;
     self.disconnectButton.enabled = _isConnected;
     self.sendButton.enabled = _isConnected;
+    self.locationSwitch.enabled = _isConnected;
     
     for(UIControl* control in @[self.clientIDTextField,
                                 self.connectButton,
-                                self.disconnectButton])
+                                self.disconnectButton,
+                                self.locationSwitch])
     {
         
         control.alpha = control.enabled ? 1.0 : 0.5;
