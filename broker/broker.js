@@ -37,7 +37,7 @@ mqttServer.on('published', function(packet, client) {
 });
 
 
-server.on('clientDisconnected', function(client) {
+mqttServer.on('clientDisconnected', function(client) {
   
   console.log('Client Disconnected:', client.id);
 
@@ -48,7 +48,7 @@ server.on('clientDisconnected', function(client) {
     retain: true
   };
 
-  server.publish(message, function() {
+  mqttServer.publish(message, function() {
     console.log('done!');
   });
 
