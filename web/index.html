@@ -80,11 +80,15 @@
 
 				var dname = message.destinationName;
 
-				write('Message Arrived for topic: "' + dname + '" and payload: "' + message.payloadString + '"');
+				
 
 				if(dname == did+'/status') {
 
+					write('Device "' + did + '" is ' + message.payloadString + '!');
+
 				} else if(dname == did+'/location') {
+
+					write('Device "' + did + '" found! look below: ');
 
 					var locationObject = eval("(" + message.payloadString + ')');
 
@@ -96,10 +100,7 @@
   							map: map
 						});
 					}
-
 				}
-
-
 			}
 			function write(text) {
 				document.getElementById("main_text").innerHTML = text; 
