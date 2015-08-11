@@ -48,14 +48,66 @@
     
 }
 
+
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
     
 }
 
+
 # pragma mark - Location Service
 
+
+- (IBAction)switchValueChanged:(UISwitch *)sender {
+    
+    if(sender.on) {
+        [self startLocationService];
+    }
+    
+    else {
+        [self stopLocationService];
+    }
+    
+}
+ 
+-(void)startLocationService {
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
+    // iOS 8
+    if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        
+        NSUInteger code = [CLLocationManager authorizationStatus];
+        
+        if (code == kCLAuthorizationStatusNotDetermined) {
+            
+            if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"]) {
+                
+                [self.locationManager requestAlwaysAuthorization];
+                
+            } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
+                
+                [self.locationManager  requestWhenInUseAuthorization];
+                
+            } else {
+                
+                [[[UIAlertView alloc] initWithTitle:@"The Info.plist missing keys"
+                                            message:@"Please add NSLocationAlwaysUsageDescription and NSLocationWhenInUseUsageDescription"
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                
+            }
+        }
+    }
+    [self.locationManager startUpdatingLocation];
+}
+ 
+- (void) stopLocationService {
+    [self.locationManager stopUpdatingLocation];
+    self.locationManager = nil;
+}
 
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -212,7 +264,6 @@
     
     self.connectButton.enabled = !_isConnected;
     self.disconnectButton.enabled = _isConnected;
-    self.sendButton.enabled = _isConnected;
     self.locationSwitch.enabled = _isConnected;
     
     for(UIControl* control in @[self.clientIDTextField,

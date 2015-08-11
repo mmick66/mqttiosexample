@@ -61,7 +61,7 @@
                                             <constraint firstAttribute="height" constant="31" id="cmD-rd-Wsk"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="switchValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="bTH-JU-HxQ"/>
+                                            <action selector="switchValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="RLg-vp-egh"/>
                                         </connections>
                                     </switch>
                                 </subviews>

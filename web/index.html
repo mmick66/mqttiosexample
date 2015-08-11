@@ -7,20 +7,37 @@
 
 		<h1>MQTT Client</h1>
 
+		<button onclick="connect()">Connect to Broker</button><br />
+		<button onclick>Subscribe to client:</button><input type="number" style="width:50px" value="101" onchange="updateClientId(this.value)">
+
 		<p id="main_text">Connecting to MQTT Broker</p>
 
 		<script type="text/javascript" src="mqttws31.js"></script>
 		<script type="text/javascript">
 
+			var did = 'D101';
+
+			function updateClientId(value) {
+				did = 'D'+value;
+			}
+
+			function connect() {
+				client.connect({onSuccess:onConnect});
+			}
+
+			function subscribe() {
+				client.subscribe(did+'/status');
+  				client.subscribe(did+'/location');
+			}
+
 			client = new Paho.MQTT.Client("127.0.0.1", 3000, "W101");
 			client.onConnectionLost = onConnectionLost;
 			client.onMessageArrived = onMessageArrived;
 
-			client.connect({onSuccess:onConnect});
+			
 
 			function onConnect() {
-  				write("Connected to 127.0.0.1:3000!");
-  				client.subscribe("D101/status");
+  				write('Connected to 127.0.0.1:3000!');
 			}
 			function onConnectionLost(responseObject) {
   				if (responseObject.errorCode !== 0) {
@@ -29,6 +46,7 @@
 			}
 			function onMessageArrived(message) {
 				write("Message Arrived: '" + message.payloadString + "'");
+
 			}
 			function write(text) {
 				document.getElementById("main_text").innerHTML = text; 
