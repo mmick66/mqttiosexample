@@ -13,6 +13,8 @@
 #define STD_CLIENT_ID @"D101"
 #define STD_MQTT_SERVER_URI @"127.0.0.1"
 
+#define SYSTEM_IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] == NSOrderedDescending)
+
 @interface ViewController () <CLLocationManagerDelegate>
 {
     MQTTClient *mqttClient;
@@ -45,15 +47,72 @@
     
     self.isConnected = NO;
     
-    locationManager = [[CLLocationManager alloc] init];
     
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+}
 
+# pragma mark - Location Service
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+- (void) showLocationServiceUnavailableMessage {
+    
+    [[[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
+                                message:@"Please enable the location services to run this experiment. If on the simulator add GPX"
+                               delegate:nil
+                      cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    
+}
+
+- (IBAction)switchValueChanged:(UISwitch *)sender {
+    
+    if(sender.on) {
+        
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+//        if(SYSTEM_IS_OS_8_OR_LATER) {
+//            
+//            [locationManager requestWhenInUseAuthorization];
+//            [locationManager requestAlwaysAuthorization];
+//            
+//        } else {
+//            
+//            [locationManager startUpdatingLocation];
+//        }
+        
+        
+        
+    } else {
+        
+        [locationManager stopUpdatingLocation];
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    switch (status) {
+            
+        case kCLAuthorizationStatusNotDetermined:
+        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusDenied:
+            [self showLocationServiceUnavailableMessage];
+            break;
+            
+        default:
+            NSLog(@"Switched Location on");
+            [locationManager startUpdatingLocation];
+            break;
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError: %@", error);
     [[[UIAlertView alloc] initWithTitle:@"Error"
@@ -62,7 +121,9 @@
                       cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"didUpdateToLocation: %@", newLocation);
     
@@ -73,6 +134,12 @@
         self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
 }
+
+- (void)sendLocation {
+    [self publishMessage:@"" toTopic:[NSString stringWithFormat:@"%@/location", mqttClient.clientID]];
+}
+
+# pragma mark - Callbacks
 
 
 - (IBAction)connectButtonPressed:(UIButton*)sender {
@@ -190,6 +257,8 @@
     
     
 }
+
+
 
 - (IBAction)trashPressed:(id)sender {
     
