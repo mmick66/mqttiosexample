@@ -51,7 +51,7 @@ pod install --verbose # see what is happening
 
 ## Running the system
 
-From the root folder:
+First make sure that a **MongoDB Instance** is running locally. Then, from the root folder:
 
 1. Start the broker
 ```
