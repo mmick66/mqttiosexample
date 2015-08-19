@@ -29,7 +29,7 @@ git clone git@bitbucket.org:mmick66/mqttiosexample.git
 
 ```
 cd broker # go inside the broker folder
-npm install # installs Mosca
+npm install # mainly Mosca
 ```
 
 ### Update the iOS Pod dependencies
