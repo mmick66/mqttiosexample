@@ -51,9 +51,11 @@ pod install --verbose # see what is happening
 
 ## Running the system
 
+From the root folder:
+
 1. Start the broker
 ```
-pm2 broker/broker.js
+pm2 start broker/broker.js
 ```
 
 2. Start the http server
