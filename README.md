@@ -26,15 +26,16 @@ git clone git@bitbucket.org:mmick66/mqttiosexample.git
 
 ### Update the Node.js dependencies
 
+In the **/broker** sub-folder and run:
 
 ```
-cd broker # go inside the broker folder
 npm install # mainly Mosca
+
 ```
 
 ### Update the iOS Pod dependencies
 
-Go into the ios folder and run:
+In the **/ios** sub-folder and run:
 
 ```
 pod install
