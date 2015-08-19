@@ -26,9 +26,9 @@ git clone git@bitbucket.org:mmick66/mqttiosexample.git
 
 ### Update the Node.js dependencies
 
-Go into the broker folder and run:
 
 ```
+cd broker # go inside the broker folder
 npm install # installs Mosca
 ```
 
