@@ -45,7 +45,7 @@ If pod seems to run forever you can try the following:
 ```
 pod repo remove master
 pod setup
-pod install
+pod install --verbose # see what is happening
 ```
 
 ## Running the system
