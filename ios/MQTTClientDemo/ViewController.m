@@ -16,6 +16,7 @@
 @interface ViewController () <CLLocationManagerDelegate>
 {
     MQTTClient *mqttClient;
+    NSTimer* timer;
 }
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -39,12 +40,10 @@
     
     [super viewDidLoad];
     
-    
     self.outputTextView.text = @"";
     self.clientIDTextField.text = STD_CLIENT_ID;
     
     self.isConnected = NO;
-    
     
 }
 
@@ -134,14 +133,17 @@
     
     if (currentLocation != nil) {
         
-        NSString* latString = [NSString stringWithFormat:@"lat: %.8f", currentLocation.coordinate.latitude];
-        NSString* longString = [NSString stringWithFormat:@"lng: %.8f", currentLocation.coordinate.longitude];
         
-        self.latitudeLabel.text = latString;
-        self.longitudeLabel.text = longString;
+        CGFloat lat = currentLocation.coordinate.latitude;
+        CGFloat lng = currentLocation.coordinate.longitude;
         
-        NSString* message = [NSString stringWithFormat:@"{%@, %@}", latString, longString];
-        [self publishMessage:message toTopic:[NSString stringWithFormat:@"%@/location", mqttClient.clientID]];
+        self.latitudeLabel.text = [NSString stringWithFormat:@"Lat: %.8f", lat];
+        self.longitudeLabel.text = [NSString stringWithFormat:@"Long: %.8f", lng];
+        
+        NSDictionary* locationObject = @{@"lat": @(lat), @"lng": @(lng)};
+        
+        [self publishMessage:[self jsonStringFromDictionary:locationObject]
+                     toTopic:[NSString stringWithFormat:@"%@/location", mqttClient.clientID]];
         
     }
 }
@@ -163,6 +165,11 @@
                 if (code == ConnectionAccepted) {
                 
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        if(timer) {
+                            [timer invalidate];
+                            timer = nil;
+                        }
                     
                         [self wirteOutput:@"Connection Accepted!"];
                         self.isConnected = YES;
@@ -175,6 +182,25 @@
                 }
             
             }];
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:3
+                                             target:self
+                                           selector:@selector(disconnectFromTimer)
+                                           userInfo:nil
+                                            repeats:NO];
+}
+
+-(void)disconnectFromTimer
+{
+    if(timer) {
+        [timer invalidate];
+        timer = nil;
+    }
+    
+    [self wirteOutput:[NSString stringWithFormat:@"Failed to Connect to %@!", STD_MQTT_SERVER_URI]];
+    
+    [self disconnectButtonPressed:nil];
+    
 }
 
 // append to the output
@@ -285,5 +311,23 @@
     self.outputTextView.text = @"";
 }
 
+-(NSString*)jsonStringFromDictionary:(NSDictionary*)dictionary
+{
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                       options:0
+                                                         error:&error];
+    
+    if (!jsonData)
+    {
+        NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+        return @"{}";
+        
+    }
+    
+    return [[NSString alloc] initWithData:jsonData
+                                 encoding:NSUTF8StringEncoding];
+}
 
 @end

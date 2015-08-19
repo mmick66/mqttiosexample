@@ -29,6 +29,7 @@ mqttServer.on('clientConnected', function(client) {
     console.log('=> Client connected with id:"' + client.id + '"');
 });
 
+
 mqttServer.on('ready', function() {
   console.log('== Mosca Server is Up and Running ==');
   console.log('   MQTT Port: ' + settings.port);
@@ -37,7 +38,9 @@ mqttServer.on('ready', function() {
 
 
 mqttServer.on('published', function(packet, client) {
-  console.log('>> Published', packet.payload);
+  console.log('>> Published to "' + packet.topic + '"', packet.payload);
+  var str = Buffer(packet.payload).toString();
+  console.log('   String: "' + str + '"');
 });
 
 mqttServer.on("subscribed", function(topic, client) {
