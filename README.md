@@ -26,15 +26,16 @@ git clone git@bitbucket.org:mmick66/mqttiosexample.git
 
 ### Update the Node.js dependencies
 
-Go into the broker folder and run:
+In the **/broker** sub-folder:
 
 ```
-npm install # installs Mosca
+npm install # mainly Mosca
+
 ```
 
 ### Update the iOS Pod dependencies
 
-Go into the ios folder and run:
+In the **/ios** sub-folder:
 
 ```
 pod install
@@ -50,9 +51,11 @@ pod install --verbose # see what is happening
 
 ## Running the system
 
+First make sure that a **MongoDB Instance** is running locally. Then, from the root folder:
+
 1. Start the broker
 ```
-pm2 broker/broker.js
+pm2 start broker/broker.js
 ```
 
 2. Start the http server
