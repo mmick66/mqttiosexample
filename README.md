@@ -78,4 +78,4 @@ http-server ./web
 
 4. Launch the iOS Simulator, press Connect, select Online from the tabs and press Send
 
-5. Look at the webpage for the incoming output.
+5. Navigate to the webpage at http://0.0.0.0:8080/, click connect and subscribe to the client id you have set on the iPhone (defaults to 101 on both iOS and Web).
