@@ -29,6 +29,7 @@ git clone git@bitbucket.org:mmick66/mqttiosexample.git
 ```
 cd /broker
 npm install # mainly Mosca
+cd ../
 ```
 
 ### Update the iOS Pod dependencies
@@ -36,8 +37,9 @@ npm install # mainly Mosca
 In the **/ios** sub-folder:
 
 ```
-cd ../ios
+cd /ios
 pod install
+cd ../
 ```
 
 If pod seems to run forever you can try the following:
@@ -50,7 +52,17 @@ pod install --verbose # see what is happening
 
 ## Running the system
 
-First make sure that a **MongoDB Instance** is running locally. Then, from the root folder:
+First make sure that a **MongoDB Instance** is running locally at port 27017. If **not** then run 
+
+```
+mkdir -p mongo/db
+mkdir mongo/logs
+touch mongo/logs/log.txt
+mongod --dbpath ./mongo/db --logpath ./mongo/logs/log.txt --fork
+```
+
+
+Then, from the root folder:
 
 1. Start the broker
 ```
