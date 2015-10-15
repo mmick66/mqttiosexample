@@ -29,7 +29,6 @@ git clone git@bitbucket.org:mmick66/mqttiosexample.git
 ```
 cd /broker
 npm install # mainly Mosca
-
 ```
 
 ### Update the iOS Pod dependencies
